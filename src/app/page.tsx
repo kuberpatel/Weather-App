@@ -12,6 +12,7 @@ import { convertWindSpeed } from "@/utils/convertWindSpeed";
 
 interface WeatherDetail {
   dt: number;
+  dt_txt: number | Date;
   main: {
     temp: number;
     feels_like: number;
@@ -19,7 +20,6 @@ interface WeatherDetail {
     temp_max: number;
     pressure: number;
     humidity: number;
-    visibility: number;
   };
   weather: {
     id: number;
@@ -29,6 +29,7 @@ interface WeatherDetail {
   wind: {
     speed: number;
   };
+  visibility: number;
 }
 
 interface WeatherData {
@@ -87,6 +88,8 @@ export default function Home() {
     });
   });
 
+  console.log(data);
+
   return (
     <div
       className="flex flex-col gap-4 min-h-screen"
@@ -116,8 +119,8 @@ export default function Home() {
                     className="text-white"
                     description={d?.weather[0].description ?? ""}
                     weatherIcon={d?.weather[0].icon ?? ""}
-                    date={d ? format(d.dt, "dd.MM") : ""}
-                    day={d ? format(d.dt, "EEEE") : ""}
+                    date={d ? format(new Date(d.dt_txt), "dd/MM/yyyy") : ""}
+                    day={d ? format(new Date(d.dt_txt), "EEEE") : ""}
                     feels_like={d?.main.feels_like ?? 0}
                     temp={d?.main.temp ?? 0}
                     temp_max={d?.main.temp_max ?? 0}
@@ -132,8 +135,8 @@ export default function Home() {
                       fromUnixTime(data?.city.sunset ?? 0),
                       "H:mm"
                     )}
-                    // visibility={`${metersToKilometers(d?.visibility)}`}
-                    windSpeed={`${convertWindSpeed(d?.wind.speed ?? 0)} km/h`}
+                    visibility={`${metersToKilometers(d?.visibility)}`}
+                    windSpeed={`${convertWindSpeed(d?.wind.speed ?? 0)}`}
                   />
                 );
               })}

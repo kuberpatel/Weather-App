@@ -33,6 +33,7 @@ export default function ForecastWeatherDetail(
     temp_max,
     description,
   } = props;
+
   return (
     <Container className="gap-4">
       {/* left */}
