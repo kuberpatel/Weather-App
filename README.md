@@ -1,7 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Hosted Link :- https://vercel.com/kuberpatels-projects/weather-app 
-
+Hosted Link :- https://weather-1iv9yg7u1-kuberpatels-projects.vercel.app/
 ## Getting Started
 
 First, run the development server:
