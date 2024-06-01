@@ -7,35 +7,38 @@ import WeatherDetails, { WeatherDetailProps } from "./WeatherDetails";
 import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
 
 export interface ForecastWeatherDetailProps extends WeatherDetailProps {
-  weatehrIcon: string;
-  date: string;
-  day: string;
+  className: any;
+  weatherIcon: any;
+  date?: any;
+  day?: any;
   temp: number;
   feels_like: number;
   temp_min: number;
   temp_max: number;
   description: string;
+  visibility?: any;
 }
 
 export default function ForecastWeatherDetail(
   props: ForecastWeatherDetailProps
 ) {
   const {
-    weatehrIcon = "02d",
-    date = "19.09",
-    day = "Tuesday",
+    weatherIcon = "02d",
+    date,
+    day,
     temp,
     feels_like,
+    visibility,
     temp_min,
     temp_max,
-    description
+    description,
   } = props;
   return (
     <Container className="gap-4">
       {/* left */}
       <section className=" flex gap-4 items-center px-4  ">
         <div className=" flex flex-col gap-1 items-center">
-          <WeatherIcon iconName={weatehrIcon} />
+          <WeatherIcon iconName={weatherIcon} />
           <p>{date}</p>
           <p className="text-sm">{day} </p>
         </div>

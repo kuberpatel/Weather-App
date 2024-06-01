@@ -150,7 +150,7 @@ function SuggetionBox({
   showSuggestions,
   suggestions,
   handleSuggestionClick,
-  error
+  error,
 }: {
   showSuggestions: boolean;
   suggestions: string[];

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -109,31 +109,34 @@ export default function Home() {
 
             <section className="flex w-full flex-col gap-4 bg-transparent">
               <p className="text-2xl text-white">Forecast (5 days)</p>
-              {firstDataForEachDate.map((d, i) => (
-                <ForecastWeatherDetail
-                  key={i}
-                  className="text-white" 
-                  description={d?.weather[0].description ?? ""}
-                  weatherIcon={d?.weather[0].icon ?? ""}
-                  date={d ? format(parseISO(d.dt_txt), "dd.MM") : ""}
-                  day={d ? format(parseISO(d.dt_txt), "EEEE") : ""}
-                  feels_like={d?.main.feels_like ?? 0}
-                  temp={d?.main.temp ?? 0}
-                  temp_max={d?.main.temp_max ?? 0}
-                  temp_min={d?.main.temp_min ?? 0}
-                  airPressure={`${d?.main.pressure} hPa `}
-                  humidity={`${d?.main.humidity}% `}
-                  sunrise={format(
-                    fromUnixTime(data?.city.sunrise ?? 0),
-                    "H:mm"
-                  )}
-                  sunset={format(fromUnixTime(data?.city.sunset ?? 0), "H:mm")}
-                  visibility={`${metersToKilometers(
-                    d?.main.visibility ?? 0
-                  )} km`}
-                  windSpeed={`${convertWindSpeed(d?.wind.speed ?? 0)} km/h`}
-                />
-              ))}
+              {firstDataForEachDate.map((d, i) => {
+                return (
+                  <ForecastWeatherDetail
+                    key={i}
+                    className="text-white"
+                    description={d?.weather[0].description ?? ""}
+                    weatherIcon={d?.weather[0].icon ?? ""}
+                    date={d ? format(d.dt, "dd.MM") : ""}
+                    day={d ? format(d.dt, "EEEE") : ""}
+                    feels_like={d?.main.feels_like ?? 0}
+                    temp={d?.main.temp ?? 0}
+                    temp_max={d?.main.temp_max ?? 0}
+                    temp_min={d?.main.temp_min ?? 0}
+                    airPressure={`${d?.main.pressure} hPa `}
+                    humidity={`${d?.main.humidity}% `}
+                    sunrise={format(
+                      fromUnixTime(data?.city.sunrise ?? 0),
+                      "H:mm"
+                    )}
+                    sunset={format(
+                      fromUnixTime(data?.city.sunset ?? 0),
+                      "H:mm"
+                    )}
+                    // visibility={`${metersToKilometers(d?.visibility)}`}
+                    windSpeed={`${convertWindSpeed(d?.wind.speed ?? 0)} km/h`}
+                  />
+                );
+              })}
             </section>
           </>
         )}
